@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">HotelsNights</string>
+    <string name="text_search">Search</string>
+    <string name="text_location">Locations</string>
+    <string name="text_filter">Filter</string>
+    <string name="text_search_hotel_by_name">Search hotel by name</string>
+    <string name="text_search_hotel_by_location">Search hotel by location</string>
+    <string name="text_search_hotel_by_filter">Search hotel by filter</string>
 </resources>
