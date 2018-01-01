@@ -8,7 +8,7 @@
         <import type="android.view.View"/>
         <variable
             name="model"
-            type="com.example.knifestart.hotelsnights.searchpostbyname.SearchHotelNameViewModel"/>
+            type="com.example.knifestart.hotelsnights.searchhotelbyname.SearchHotelNameViewModel"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

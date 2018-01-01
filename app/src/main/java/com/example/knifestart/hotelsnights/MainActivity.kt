@@ -8,7 +8,9 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.MenuItem
 import android.widget.Toast
-import com.example.knifestart.hotelsnights.searchpostbyname.SearchHotelNameFragment
+import com.example.knifestart.hotelsnights.searchhotelbylocation.SearchHotelLocationFragment
+import com.example.knifestart.hotelsnights.searchhotelbyname.SearchHotelNameFragment
+import com.example.knifestart.hotelsnights.searchhotelfilter.SearchHotelFilterFragment
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.SupportFragmentNavigator
 import ru.terrakok.cicerone.commands.Command
