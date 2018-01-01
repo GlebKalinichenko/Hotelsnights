@@ -2,6 +2,7 @@ package com.example.knifestart.hotelsnights.di.application.component
 
 import com.example.knifestart.hotelsnights.MainApplication
 import com.example.knifestart.hotelsnights.di.application.module.*
+import com.example.knifestart.hotelsnights.di.mainactivity.MainActivityComponent
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,6 +13,6 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(ApplicationModule::class, GsonModule::class, HostModule::class,
         LoggerModule::class, NetworkModule::class, NavigationModule::class))
 interface ApplicationComponent {
-    //fun postComponentModule(): PostContainerComponent.Builder
+    fun mainActivityComponent(): MainActivityComponent.Builder
     fun inject(app: MainApplication)
 }

@@ -1,4 +1,4 @@
-package com.example.knifestart.hotelsnights
+package com.example.knifestart.hotelsnights.base
 
 import android.databinding.ViewDataBinding
 import android.os.Bundle
