@@ -12,7 +12,9 @@ open class FragmentViewModel constructor(var disposables: CompositeDisposable = 
 
     override fun onStart() {}
 
-    override fun onDestroyView() {}
+    override fun onDestroyView() {
+        dispose()
+    }
 
     override fun dispose() {
         if (!disposables.isDisposed) disposables.dispose()
