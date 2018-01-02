@@ -11,4 +11,7 @@ import retrofit2.http.Query
 interface IRemoteApi {
     @GET("top.json")
     fun fetchHotels(@Query("limit") limit: String) : Observable<Hotel>
+
+    @GET("top.json")
+    fun fetchHotels(@Query("lat") lat: String, @Query("lng") lng: String) : Observable<Hotel>
 }

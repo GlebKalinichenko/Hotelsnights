@@ -6,6 +6,8 @@ import com.example.knifestart.hotelsnights.di.application.component.DaggerApplic
 import com.example.knifestart.hotelsnights.di.application.module.ApplicationModule
 import com.example.knifestart.hotelsnights.di.mainactivity.MainActivityComponent
 import com.example.knifestart.hotelsnights.di.mainactivity.MainActivityModule
+import com.example.knifestart.hotelsnights.di.searchhotellocation.SearchHotelLocationComponent
+import com.example.knifestart.hotelsnights.di.searchhotellocation.SearchHotelLocationModule
 import com.example.knifestart.hotelsnights.di.searchhotelname.SearchHotelNameComponent
 import com.example.knifestart.hotelsnights.di.searchhotelname.SearchHotelNameModule
 
@@ -24,6 +26,10 @@ class MainApplication : Application() {
 
     val searchHotelNameComponent: SearchHotelNameComponent by lazy {
         mainActivityComponent.searchHotelNameComponent().searchNameModule(SearchHotelNameModule()).build()
+    }
+
+    val searchHotelLocationComponent: SearchHotelLocationComponent by lazy {
+        mainActivityComponent.searchHotelLocationComponent().searchLocationModule(SearchHotelLocationModule()).build()
     }
 
     override fun onCreate() {

@@ -8,7 +8,7 @@ import javax.inject.Inject
 /**
  * Created by glebkalinichenko on 02.01.18.
  */
-class DatabaseSearchHotelNameDataSource @Inject constructor(var remoteApi: IRemoteApi) : ISearchHotelDataSource {
+class DatabaseSearchHotelNameDataSource @Inject constructor(var remoteApi: IRemoteApi) : ISearchHotelNameDataSource {
 
     override fun fetchHotel(limit: Int): Observable<MutableList<Hotel>> = Observable.empty()
 }

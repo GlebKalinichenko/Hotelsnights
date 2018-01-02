@@ -41,7 +41,5 @@ class SearchHotelNameFragment : FragmentView<SearchHotelNameComponent>() {
         component.inject(this)
     }
 
-    override fun createComponent(): SearchHotelNameComponent {
-        return (activity!!.application as MainApplication).searchHotelNameComponent
-    }
+    override fun createComponent(): SearchHotelNameComponent = (activity!!.application as MainApplication).searchHotelNameComponent
 }

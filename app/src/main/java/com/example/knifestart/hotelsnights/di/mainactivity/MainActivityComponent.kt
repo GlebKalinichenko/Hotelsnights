@@ -2,6 +2,7 @@ package com.example.knifestart.hotelsnights.di.mainactivity
 
 import com.example.knifestart.hotelsnights.MainActivity
 import com.example.knifestart.hotelsnights.di.scope.HotelActivityScope
+import com.example.knifestart.hotelsnights.di.searchhotellocation.SearchHotelLocationComponent
 import com.example.knifestart.hotelsnights.di.searchhotelname.SearchHotelNameComponent
 import dagger.Subcomponent
 
@@ -19,5 +20,6 @@ interface MainActivityComponent {
     }
 
     fun searchHotelNameComponent(): SearchHotelNameComponent.Builder
+    fun searchHotelLocationComponent(): SearchHotelLocationComponent.Builder
     fun inject(activity: MainActivity)
 }
