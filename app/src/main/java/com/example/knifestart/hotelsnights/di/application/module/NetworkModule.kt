@@ -1,6 +1,6 @@
 package com.example.knifestart.hotelsnights.di.application.module
 
-import com.example.knifestart.domain.IRemoteApi
+import com.example.knifestart.domain.api.IRemoteApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

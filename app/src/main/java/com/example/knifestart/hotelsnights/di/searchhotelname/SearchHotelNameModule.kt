@@ -1,5 +1,7 @@
 package com.example.knifestart.hotelsnights.di.searchhotelname
 
+import com.example.knifestart.data.searchhotelname.repository.SearchHotelNameRepository
+import com.example.knifestart.domain.searchhotelname.SearchHotelNameUseCase
 import com.example.knifestart.hotelsnights.di.scope.HotelScope
 import com.example.knifestart.hotelsnights.searchhotelbyname.SearchHotelNameViewModel
 import dagger.Module
@@ -14,7 +16,10 @@ import ru.terrakok.cicerone.Router
 @Module
 class SearchHotelNameModule {
 
-    @Provides
-    @HotelScope
-    fun provideViewModel(router: Router) = SearchHotelNameViewModel(router)
+    @Provides @HotelScope
+    fun provideSearchHotelNameUseCase(postRepository: SearchHotelNameRepository) : SearchHotelNameUseCase =
+            SearchHotelNameUseCase(Schedulers.io(), AndroidSchedulers.mainThread(), postRepository)
+
+    @Provides @HotelScope
+    fun provideViewModel(router: Router, useCase: SearchHotelNameUseCase) = SearchHotelNameViewModel(router, useCase)
 }

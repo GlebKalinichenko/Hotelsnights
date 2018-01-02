@@ -1,4 +1,4 @@
-package com.example.knifestart.domain
+package com.example.knifestart.domain.entity
 
 /**
  * Created by glebkalinichenko on 31.12.17.

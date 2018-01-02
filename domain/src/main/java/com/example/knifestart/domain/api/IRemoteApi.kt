@@ -1,5 +1,6 @@
-package com.example.knifestart.domain
+package com.example.knifestart.domain.api
 
+import com.example.knifestart.domain.entity.Hotel
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -9,5 +10,5 @@ import retrofit2.http.Query
  */
 interface IRemoteApi {
     @GET("top.json")
-    fun fetchPosts(@Query("limit") limit: String) : Observable<Hotel>
+    fun fetchHotels(@Query("limit") limit: String) : Observable<Hotel>
 }
