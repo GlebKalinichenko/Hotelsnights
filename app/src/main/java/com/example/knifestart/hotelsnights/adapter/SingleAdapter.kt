@@ -9,4 +9,6 @@ abstract class SingleLineAdapter<T> (var layoutId: Int) : BaseAdapter() {
     }
 
     abstract fun addDataSource(objects: MutableList<T>)
+
+    abstract fun cleanAndAddDataSource(objects: MutableList<T>)
 }

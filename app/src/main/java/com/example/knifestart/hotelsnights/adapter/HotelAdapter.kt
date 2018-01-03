@@ -6,22 +6,29 @@ import com.example.knifestart.domain.entity.Hotel
  * Created by glebkalinichenko on 03.01.18.
  */
 class HotelAdapter(var resId: Int, var selectedPost: (Hotel) -> Unit) : SingleLineAdapter<Hotel>(resId) {
-    var posts: MutableList<Hotel> = mutableListOf()
+    var hotels: MutableList<Hotel> = mutableListOf()
 
     override fun addDataSource(objects: MutableList<Hotel>) {
-        posts.addAll(objects)
+        var prevHotelsCount = hotels.size
+        hotels.addAll(objects)
+        notifyItemRangeInserted(prevHotelsCount, hotels.size)
+    }
+
+    override fun cleanAndAddDataSource(objects: MutableList<Hotel>) {
+        hotels.clear()
+        hotels.addAll(objects)
         notifyDataSetChanged()
     }
 
     override fun getObjForPosition(position: Int): Any {
-        return posts[position]
+        return hotels[position]
     }
 
     override fun getItemCount(): Int {
-        return posts.size
+        return hotels.size
     }
 
     override fun onSelected(position: Int) {
-        selectedPost(posts.get(position))
+        selectedPost(hotels.get(position))
     }
 }
