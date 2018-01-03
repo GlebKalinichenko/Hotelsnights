@@ -13,7 +13,7 @@ class HostModule {
 
     @Provides
     @Singleton
-    fun provideBaseUrl() = "https://www.reddit.com/"
+    fun provideBaseUrl() = "http://engine.hotellook.com/api/"
 
     @Provides
     @Singleton

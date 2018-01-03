@@ -34,7 +34,7 @@ class SearchHotelWrapperTest {
         `when`(mockHotelResponseTwo.name).thenReturn("Intourist")
 
         var listResponses = listOf<HotelResponse>(mockHotelResponseOne, mockHotelResponseTwo)
-        var listHotels = wrapper.convertHotelReponse(listResponses)
+        var listHotels = wrapper.convertHotelsReponse(listResponses)
 
         assertThat(listHotels[0], `is`(instanceOf(Hotel::class.java)))
         assertThat(listHotels[1], `is`(instanceOf(Hotel::class.java)))

@@ -32,6 +32,11 @@ class SearchHotelNameFragment : FragmentView<SearchHotelNameComponent>() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.onStart()
+    }
+
     override fun setState() {
         binding.setVariable(BR.model, viewModel)
         binding.executePendingBindings()

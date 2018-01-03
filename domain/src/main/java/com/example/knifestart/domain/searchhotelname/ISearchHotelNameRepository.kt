@@ -7,6 +7,6 @@ import io.reactivex.Observable
  * Created by glebkalinichenko on 02.01.18.
  */
 interface ISearchHotelNameRepository {
-    fun fetchHotelsApi(limit: Int) : Observable<MutableList<Hotel>>
-    fun fetchHotelsDatabase(limit: Int) : Observable<MutableList<Hotel>>
+    fun fetchHotelsApi(query: String, limit: Int) : Observable<MutableList<Hotel>>
+    fun fetchHotelsDatabase(query: String, limit: Int) : Observable<MutableList<Hotel>>
 }

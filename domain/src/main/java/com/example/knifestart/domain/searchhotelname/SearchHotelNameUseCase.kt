@@ -14,15 +14,15 @@ class SearchHotelNameUseCase @Inject constructor(workScheduler: Scheduler,
                                             private val repository: ISearchHotelNameRepository) : QueryUseCase<MutableList<Hotel>, SearchHotelNameUseCase.FetchHotelNameParam>(workScheduler, observeScheduler) {
 
     override fun buildUseCaseObservable(params: FetchHotelNameParam): Observable<MutableList<Hotel>> {
-        return repository.fetchHotelsApi(params.limit)
+        return repository.fetchHotelsApi(params.query, params.limit)
     }
 
-    class FetchHotelNameParam(offset: Int, limit: Int) {
-        internal var offset: Int
+    class FetchHotelNameParam(query: String, limit: Int) {
+        internal var query: String
         internal var limit: Int
 
         init {
-            this.offset = offset
+            this.query = query
             this.limit = limit
         }
     }

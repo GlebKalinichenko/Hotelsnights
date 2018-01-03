@@ -14,7 +14,7 @@ class SearchHotelNameWrapper @Inject constructor() {
         return hotel
     }
 
-    fun convertHotelReponse(hotelResponses: List<HotelResponse>) : MutableList<Hotel> {
+    fun convertHotelsReponse(hotelResponses: List<HotelResponse>) : MutableList<Hotel> {
         var hotels = mutableListOf<Hotel>()
 
         for (hotelResponse in hotelResponses) {

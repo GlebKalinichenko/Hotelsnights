@@ -1,6 +1,7 @@
 package com.example.knifestart.hotelsnights.searchhotelbyname
 
 import android.databinding.Bindable
+import android.util.Log
 import com.android.databinding.library.baseAdapters.BR
 import com.example.knifestart.domain.searchhotelname.SearchHotelNameUseCase
 import com.example.knifestart.hotelsnights.base.FragmentViewModel
@@ -18,11 +19,15 @@ class SearchHotelNameViewModel @Inject constructor(var router: Router, var fetch
     }
 
     override fun onStart() {
-
+        searchHotels("palace", 5)
     }
 
-    override fun searchHotels() {
-
+    override fun searchHotels(query: String, limit: Int) {
+        fetchHotelUseCase.run(SearchHotelNameUseCase.FetchHotelNameParam(query, limit))
+                .doOnError { i -> Log.d(LOG_TAG,  "Error")  }
+                .subscribe {
+                    hotels -> Log.d(LOG_TAG, hotels.size.toString())
+                }
     }
 
     @Bindable

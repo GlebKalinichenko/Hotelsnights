@@ -11,7 +11,7 @@ import javax.inject.Inject
  */
 class SearchHotelNameRepository @Inject constructor(var factory: SearchHotelNameFactory)  : ISearchHotelNameRepository {
 
-    override fun fetchHotelsApi(limit: Int): Observable<MutableList<Hotel>> = factory.fetchRemoteApi().fetchHotel(limit)
+    override fun fetchHotelsApi(query: String, limit: Int): Observable<MutableList<Hotel>> = factory.fetchRemoteApi().fetchHotel(query, limit)
 
-    override fun fetchHotelsDatabase(limit: Int): Observable<MutableList<Hotel>> = factory.fetchDatabaseApi().fetchHotel(limit)
+    override fun fetchHotelsDatabase(query: String, limit: Int): Observable<MutableList<Hotel>> = factory.fetchDatabaseApi().fetchHotel(query, limit)
 }
