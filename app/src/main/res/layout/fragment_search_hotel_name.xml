@@ -27,6 +27,7 @@
                 bind:postBindAdapter="@{model}"
                 bind:setHasFixedSize="@{true}"
                 bind:space="@{16}"
+                bind:scrollPagination="@{model}"
                 android:padding="16dp"/>
 
         </android.support.v4.widget.SwipeRefreshLayout>

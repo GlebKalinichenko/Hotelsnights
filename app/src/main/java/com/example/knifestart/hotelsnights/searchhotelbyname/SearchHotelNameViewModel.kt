@@ -14,7 +14,7 @@ import javax.inject.Inject
  * Created by glebkalinichenko on 01.01.18.
  */
 class SearchHotelNameViewModel @Inject constructor(var router: Router, var fetchHotelUseCase: SearchHotelNameUseCase,
-    private var isProgressVisible: Boolean = false, private val VISIBLE_THRESHOLD: Int = 5) : FragmentViewModel(), ISearchHotelNameViewModel {
+    private var isProgressVisible: Boolean = false, val VISIBLE_THRESHOLD: Int = 5) : FragmentViewModel(), ISearchHotelNameViewModel {
 
     var adapter = HotelAdapter(R.layout.item_hotel) {
         post -> Log.d(LOG_TAG, post.fullName)
