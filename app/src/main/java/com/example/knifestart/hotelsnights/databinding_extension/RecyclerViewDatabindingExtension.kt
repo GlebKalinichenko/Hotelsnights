@@ -31,7 +31,6 @@ fun bindAdapter(view: RecyclerView, viewModel: SearchHotelNameViewModel) {
 fun scrollPagination(view: RecyclerView, viewModel: SearchHotelNameViewModel) {
     view.addOnScrollListener(object : PaginationScrollListener(view.layoutManager as LinearLayoutManager){
         override fun loadMoreItems() {
-            var a = getTotalPageCount()
             viewModel.searchHotels("palace", getTotalPageCount() + viewModel.VISIBLE_THRESHOLD, false)
         }
 

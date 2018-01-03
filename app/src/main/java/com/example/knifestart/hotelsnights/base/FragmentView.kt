@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.reactivex.disposables.Disposable
 
 /**
  * Created by glebkalinichenko on 31.12.17.
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 abstract class FragmentView<T> : Fragment() {
     lateinit var binding: ViewDataBinding
     var component: T? = null
+    lateinit var errorDisposable: Disposable
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = super.onCreateView(inflater, container, savedInstanceState)

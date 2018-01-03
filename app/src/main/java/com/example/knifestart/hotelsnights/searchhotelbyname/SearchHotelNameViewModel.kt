@@ -19,6 +19,7 @@ class SearchHotelNameViewModel @Inject constructor(var router: Router, var fetch
     var adapter = HotelAdapter(R.layout.item_hotel) {
         post -> Log.d(LOG_TAG, post.fullName)
     }
+
     override fun onCreateView() {
 
     }
@@ -29,12 +30,12 @@ class SearchHotelNameViewModel @Inject constructor(var router: Router, var fetch
 
     override fun searchHotels(query: String, limit: Int, isRefresh: Boolean) {
         setProgressVisible(true)
-        fetchHotelUseCase.run(SearchHotelNameUseCase.FetchHotelNameParam(query, limit))
-                .doOnError { i -> Log.d(LOG_TAG,  "Error")  }
+        addDisposable(fetchHotelUseCase.run(SearchHotelNameUseCase.FetchHotelNameParam(query, limit))
+                .doOnError { i -> i.message.let { errorSubject.onNext(i.message!!) } }
                 .subscribe {
                     hotels -> if (!isRefresh) adapter.addDataSource(hotels) else adapter.cleanAndAddDataSource(hotels)
                     setProgressVisible(false)
-                }
+                })
     }
 
     override fun refreshHotels() {

@@ -2,6 +2,7 @@ package com.example.knifestart.hotelsnights.searchhotelbyname
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.example.knifestart.hotelsnights.MainApplication
 import com.example.knifestart.hotelsnights.R
 import com.example.knifestart.hotelsnights.base.FragmentView
 import com.example.knifestart.hotelsnights.di.searchhotelname.SearchHotelNameComponent
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 /**
@@ -18,6 +20,7 @@ import javax.inject.Inject
 class SearchHotelNameFragment : FragmentView<SearchHotelNameComponent>() {
     @Inject
     lateinit var viewModel: SearchHotelNameViewModel
+    var disposables: CompositeDisposable = CompositeDisposable()
 
     companion object {
         fun newInstance() : SearchHotelNameFragment {
@@ -30,6 +33,11 @@ class SearchHotelNameFragment : FragmentView<SearchHotelNameComponent>() {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search_hotel_name, container,false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        disposables.add(viewModel.errorSubject.subscribe { error -> Log.d("Error", error) })
     }
 
     override fun onStart() {
@@ -47,4 +55,14 @@ class SearchHotelNameFragment : FragmentView<SearchHotelNameComponent>() {
     }
 
     override fun createComponent(): SearchHotelNameComponent = (activity!!.application as MainApplication).searchHotelNameComponent
+
+    override fun onDestroyView() {
+        disposeErrorDisposables()
+        viewModel.onDestroyView()
+        super.onDestroyView()
+    }
+
+    private fun disposeErrorDisposables() {
+        if (!disposables.isDisposed) disposables.dispose()
+    }
 }
