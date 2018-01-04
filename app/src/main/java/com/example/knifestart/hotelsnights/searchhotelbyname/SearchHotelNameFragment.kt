@@ -22,7 +22,6 @@ class SearchHotelNameFragment : FragmentView<SearchHotelNameComponent>() {
 
     @Inject
     lateinit var viewModel: SearchHotelNameViewModel
-    var disposables: CompositeDisposable = CompositeDisposable()
 
     companion object {
         fun newInstance() : SearchHotelNameFragment {
@@ -38,7 +37,7 @@ class SearchHotelNameFragment : FragmentView<SearchHotelNameComponent>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        disposables.add(viewModel.errorSubject.subscribe { error -> Log.d("Error", error) })
+        errorDisposable.add(viewModel.errorSubject.subscribe { error -> Log.d("Error", error) })
     }
 
     override fun onStart() {
@@ -60,12 +59,7 @@ class SearchHotelNameFragment : FragmentView<SearchHotelNameComponent>() {
     override fun createComponent(): SearchHotelNameComponent = (activity!!.application as MainApplication).searchHotelNameComponent
 
     override fun onDestroyView() {
-        disposeErrorDisposables()
         viewModel.onDestroyView()
         super.onDestroyView()
-    }
-
-    private fun disposeErrorDisposables() {
-        if (!disposables.isDisposed) disposables.dispose()
     }
 }

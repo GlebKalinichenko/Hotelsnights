@@ -3,6 +3,7 @@ package com.example.knifestart.hotelsnights.searchhotelbyname
 import android.databinding.Bindable
 import android.util.Log
 import com.android.databinding.library.baseAdapters.BR
+import com.example.knifestart.domain.entity.Hotel
 import com.example.knifestart.domain.searchhotelname.SearchHotelNameUseCase
 import com.example.knifestart.hotelsnights.R
 import com.example.knifestart.hotelsnights.adapter.HotelAdapter
@@ -30,12 +31,22 @@ class SearchHotelNameViewModel @Inject constructor(var router: Router, var fetch
 
     override fun searchHotels(query: String, limit: Int, isRefresh: Boolean) {
         setProgressVisible(true)
-        addDisposable(fetchHotelUseCase.run(SearchHotelNameUseCase.FetchHotelNameParam(query, limit))
-                .doOnError { i -> i.message.let { errorSubject.onNext(i.message!!) } }
-                .subscribe {
-                    hotels -> if (!isRefresh) adapter.addDataSource(hotels) else adapter.cleanAndAddDataSource(hotels)
+        fetchHotelUseCase.run(SearchHotelNameUseCase.FetchHotelNameParam(query, limit))
+                .doOnError { i ->
+                    i.message.let { errorSubject.onNext(i.message!!) }
                     setProgressVisible(false)
-                })
+                }
+                .subscribe {
+                    hotels -> updateDataSource(isRefresh, hotels)
+                    setProgressVisible(false)
+                }
+    }
+
+    private fun updateDataSource(isRefresh: Boolean, hotels: MutableList<Hotel>) {
+        if (!isRefresh) {
+            adapter.addDataSource(hotels)
+        }
+        else adapter.cleanAndAddDataSource(hotels)
     }
 
     override fun refreshHotels() {

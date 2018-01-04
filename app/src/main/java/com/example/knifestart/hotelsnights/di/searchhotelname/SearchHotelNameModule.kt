@@ -18,7 +18,7 @@ class SearchHotelNameModule {
 
     @Provides @HotelScope
     fun provideSearchHotelNameUseCase(postRepository: SearchHotelNameRepository) : SearchHotelNameUseCase =
-            SearchHotelNameUseCase(Schedulers.io(), AndroidSchedulers.mainThread(), postRepository)
+            SearchHotelNameUseCase(Schedulers.newThread(), AndroidSchedulers.mainThread(), postRepository)
 
     @Provides @HotelScope
     fun provideViewModel(router: Router, useCase: SearchHotelNameUseCase) = SearchHotelNameViewModel(router, useCase)

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 /**
@@ -15,7 +16,7 @@ import io.reactivex.disposables.Disposable
 abstract class FragmentView<T> : Fragment() {
     lateinit var binding: ViewDataBinding
     var component: T? = null
-    lateinit var errorDisposable: Disposable
+    var errorDisposable: CompositeDisposable = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = super.onCreateView(inflater, container, savedInstanceState)
@@ -35,12 +36,20 @@ abstract class FragmentView<T> : Fragment() {
         }
         val retainedObject = activity!!.getLastCustomNonConfigurationInstance()
         if (retainedObject != null) {
-            //we are retaining the object, so we can safely cast it to our component class.
             component = retainedObject as T
         } else {
             component = createComponent()
         }
         return component
+    }
+
+    override fun onDestroyView() {
+        disposeErrorDisposables()
+        super.onDestroyView()
+    }
+
+    internal fun disposeErrorDisposables() {
+        if (!errorDisposable.isDisposed) errorDisposable.dispose()
     }
 
     abstract fun injectDependencies(component: T)
