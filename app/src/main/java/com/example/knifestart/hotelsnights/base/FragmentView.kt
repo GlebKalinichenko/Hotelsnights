@@ -1,5 +1,6 @@
 package com.example.knifestart.hotelsnights.base
 
+import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -19,12 +20,13 @@ abstract class FragmentView<T> : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = super.onCreateView(inflater, container, savedInstanceState)
         injectDependencies(getActivityComponent()!!)
+        binding = DataBindingUtil.inflate(inflater, getLayoutId(), container,false)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setState()
+        setVariables()
     }
 
     protected fun getActivityComponent(): T? {
@@ -45,5 +47,7 @@ abstract class FragmentView<T> : Fragment() {
 
     abstract fun createComponent(): T
 
-    abstract fun setState()
+    abstract fun setVariables()
+
+    abstract fun getLayoutId() : Int
 }

@@ -16,6 +16,7 @@ import javax.inject.Inject
  * Created by glebkalinichenko on 31.12.17.
  */
 class SearchHotelLocationFragment : FragmentView<SearchHotelLocationComponent>() {
+
     @Inject
     lateinit var viewModel: SearchHotelLocationViewModel
 
@@ -29,7 +30,6 @@ class SearchHotelLocationFragment : FragmentView<SearchHotelLocationComponent>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search_hotel_location, container,false)
         return binding.root
     }
 
@@ -39,8 +39,10 @@ class SearchHotelLocationFragment : FragmentView<SearchHotelLocationComponent>()
 
     override fun createComponent(): SearchHotelLocationComponent = (activity.application as MainApplication).searchHotelLocationComponent
 
-    override fun setState() {
+    override fun setVariables() {
         binding.setVariable(BR.model, viewModel)
         binding.executePendingBindings()
     }
+
+    override fun getLayoutId(): Int = R.layout.fragment_search_hotel_location
 }
